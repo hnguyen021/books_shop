@@ -92,19 +92,27 @@ class AdminController extends BaseController{
     }
     public function uploaded(){
         $tensach    = filter_input(INPUT_POST,'namebook',FILTER_SANITIZE_STRING);
-        $hinhsach   = filter_input(INPUT_POST,'fileUploadImage',FILTER_SANITIZE_STRING);
+       // $hinhsach   = filter_input(INPUT_POST,'fileUploadImage',FILTER_SANITIZE_STRING);
         $motasach   = filter_input(INPUT_POST,'motasach',FILTER_SANITIZE_STRING);
         $tacgiasach = filter_input(INPUT_POST,'tacgiasach',FILTER_SANITIZE_STRING);
         $idtheloai  = filter_input(INPUT_POST,'idtheloai',FILTER_SANITIZE_STRING);
         $namxuatban = filter_input(INPUT_POST,'namxb',FILTER_SANITIZE_STRING);
         $idquocgia  = filter_input(INPUT_POST,'idquocgia',FILTER_SANITIZE_STRING);
         $giasach    = filter_input(INPUT_POST,'giasach',FILTER_SANITIZE_STRING);
-        $banner     = filter_input(INPUT_POST,'fileUploadBanner',FILTER_SANITIZE_STRING);
-        $targetimage = "upload1/".$_FILES['fileUploadImage']['namebook'];// lay duong dan 
-        move_uploaded_file($_FILES['fileUploadImage']['namebook'], $targetimage);
-        $targetimage = "upload1/".$_FILES['fileUploadBanner']['tmp_name'];// lay duong dan 
-        move_uploaded_file($_FILES['fileUploadBanner']['tmp_name'], $targetimage);
-        
+      // $banner     = filter_input(INPUT_POST,'fileUploadBanner',FILTER_SANITIZE_STRING);
+        $targetimage = "upload1/".$_FILES['fileUploadImage']['name'];// lay duong dan 
+        move_uploaded_file($_FILES['fileUploadImage']['name'], $targetimage);
+        $targetbanner = "upload1/".$_FILES['fileUploadBanner']['name'];// lay duong dan 
+        move_uploaded_file($_FILES['fileUploadBanner']['name'], $targetbanner);
+        $isOK = Book::upload($tensach,$targetimage,$motasach,$tacgiasach,$idtheloai,$namxuatban,$idquocgia,$giasach,$targetimage);
+        // echo $isOK;
+       //  exit();
+        if($isOK == 1){
+            BaseController::render("temp",array('isOK'=>$isOK),"template_4");
+        }
+        else{
+            redirect('?controller=admin&action=upload');  
+        }
 
         
        
