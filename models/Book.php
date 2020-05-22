@@ -241,7 +241,12 @@
             
             $stmt = $conn->prepare("INSERT INTO book(tensach,hinhsach,motasach,tacgiasach,idtheloai,namxuatban,idquocgia,giasach,banner)  VALUES (?, ?, ?,?,?,?,?,?,?)");
             $stmt->bind_param("ssssisiis",$tensach,$hinhsach,$motasach,$tacgiasach,$idtheloai,$namxuatban,$idquocgia,$giasach,$banner);
-            $isOK = $stmt->execute();
+            $result=$stmt->execute();
+            if($result == false){
+                return false;
+            }
+            return true;
+            
         }
         
     }
