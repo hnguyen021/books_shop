@@ -85,11 +85,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="header_bottom">
 	     	<div class="menu">
 	     		<ul>
-			    	<li class="active"><a href="index.html">Home</a></li>
-			    	<li><a href="about.html">About</a></li>
-			    	<li><a href="delivery.html">Delivery</a></li>
-			    	<li><a href="news.html">News</a></li>
-					<li><a href="contact.html">Contact</a></li>
+			    	<li class="active"><a href="?controller=admin&action=view">Manage Bill</a></li>
+			    	<li><a href="?controller=admin&action=managebook">Manage Book</a></li>
+			    	<li><a href="?controller=admin&action=upload">Upload Book</a></li>
+			    	<li><a href="?controller=admin&action=manageacount">Manage Acount</a></li>
+					<li><a href="?controller=admin&action=manageinventory">Manage Inventory</a></li>
 					<?php
 						if(isLoggedIn()){
 					?>
